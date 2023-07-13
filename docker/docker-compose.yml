@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+    avtobuska-db:
+        volumes:
+            - mysql-data:/var/lib/mysql
+        image: mysql
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: avtobuska
+            MYSQL_USER: avtobuska
+            MYSQL_PASSWORD: avtobuska
+            MYSQL_ROOT_PASSWORD: avtobuska
+
+volumes:
+    mysql-data:
+        driver: local

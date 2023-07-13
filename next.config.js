@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
-module.exports = nextConfig
+const nextConfig = {
+    images: {
+        domains: ['upcdn.io']
+    },
+    output: 'standalone',
+    experimental: {
+        appDir: true,
+        serverComponentsExternalPackages: ['sequelize']
+    }
+};
+module.exports = nextConfig;
