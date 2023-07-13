@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import { fetchCategories } from '@/service/service';
 
 export const INITIAL_CATEGORY_STATE = {
+    id: '',
     name: '',
     description: '',
     order: '',
     image: '',
-    showOnMenu: false
+    active: false
 };
 
 const CategoryPage = () => {
@@ -27,7 +28,7 @@ const CategoryPage = () => {
     return (
         <>
             <h1 className="mb-5 font-bold">Manage Categories</h1>
-            <div className="flex gap-10 w-full">
+            <div className="flex gap-20 w-full">
                 <CategoryForm
                     category={category}
                     setCategory={setCategory}

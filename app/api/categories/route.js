@@ -1,10 +1,33 @@
-import Category from '@/database/models/category';
+import { Category, Product } from '@/database/models';
+import connection from '@/database/connection';
 
 export const GET = async () => {
     try {
         const categories = await Category.findAll({
-            attributes: ['id', 'name', 'description', 'order', 'showOnMenu', 'image'],
-            order: [['order', 'ASC']]
+            include: {
+                model: Product,
+                as: 'products',
+                attributes: []
+            },
+            attributes: [
+                'id',
+                'name',
+                'description',
+                'order',
+                'active',
+                'image',
+                [
+                    connection.literal(
+                        '(SELECT COUNT(*) FROM products WHERE products.categoryId = Category.id)'
+                    ),
+                    'numberOfProducts'
+                ]
+            ],
+            order: [
+                ['active', 'DESC'],
+                ['order', 'ASC'],
+                ['numberOfProducts', 'DESC']
+            ]
         });
         return new Response(JSON.stringify(categories), { status: 200 });
     } catch (error) {

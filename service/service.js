@@ -3,8 +3,8 @@ export const fetchCategories = async () => {
     return await response.json();
 };
 
-export const fetchActiveCategories = async () => {
-    const response = await fetch('/api/categories/getAllActive');
+export const fetchActiveCategoriesThatHaveProducts = async () => {
+    const response = await fetch('/api/categories/getAllActiveThatHaveProducts');
     return await response.json();
 };
 

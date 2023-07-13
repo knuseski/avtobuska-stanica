@@ -1,11 +1,11 @@
-import Product from '@/database/models/product';
+import { Product } from '@/database/models';
 
 export const GET = async (req, { params }) => {
     const id = params.id;
     try {
         const products = await Product.findAll({
             where: {
-                showOnMenu: true,
+                active: true,
                 categoryId: id
             },
             attributes: ['id', 'name', 'description', 'price']

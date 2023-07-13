@@ -1,23 +1,17 @@
-import Product from '@/database/models/product';
-import Category from '@/database/models/category';
+import { Category, Product } from '@/database/models';
 
 export const GET = async () => {
     try {
         const products = await Product.findAll({
-            attributes: ['id', 'name', 'description', 'price', 'categoryId', 'showOnMenu']
+            include: {
+                model: Category,
+                as: 'category',
+                attributes: ['name']
+            },
+            attributes: ['id', 'name', 'description', 'price', 'categoryId', 'active']
         });
 
-        // TODO fix the problem with associations
-        const updated = await Promise.all(
-            products.map(async (product) => {
-                const category = await Category.findOne({
-                    where: { id: product.dataValues.categoryId }
-                });
-                return { ...product.dataValues, categoryName: category.name };
-            })
-        );
-
-        return new Response(JSON.stringify(updated), { status: 200 });
+        return new Response(JSON.stringify(products), { status: 200 });
     } catch (error) {
         console.error(error);
         return new Response(`Failed to fetch all products. ${error.message}`, { status: 500 });

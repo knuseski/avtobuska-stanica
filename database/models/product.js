@@ -10,23 +10,16 @@ const initProduct = (sequelize, Types) => {
             description: Types.STRING,
             price: Types.NUMBER,
             categoryId: Types.INTEGER,
-            showOnMenu: Types.BOOLEAN
+            active: Types.BOOLEAN
         },
         {
             sequelize,
             modelName: 'Product',
-            tableName: 'Product',
+            tableName: 'products',
             createdAt: 'created_at',
             updatedAt: 'updated_at'
         }
     );
-
-    Product.associate = (models) => {
-        Product.belongsTo(models.Category, {
-            foreignKey: 'categoryId',
-            as: 'category'
-        });
-    };
 
     return Product;
 };

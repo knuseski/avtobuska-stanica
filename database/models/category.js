@@ -9,24 +9,17 @@ const initCategory = (sequelize, Types) => {
             name: Types.STRING,
             description: Types.STRING,
             order: Types.NUMBER,
-            showOnMenu: Types.BOOLEAN,
+            active: Types.BOOLEAN,
             image: Types.STRING
         },
         {
             sequelize,
             modelName: 'Category',
-            tableName: 'Category',
+            tableName: 'categories',
             createdAt: 'created_at',
             updatedAt: 'updated_at'
         }
     );
-
-    Category.associate = (models) => {
-        Category.hasMany(models.Product, {
-            foreignKey: 'categoryId',
-            as: 'products'
-        });
-    };
 
     return Category;
 };

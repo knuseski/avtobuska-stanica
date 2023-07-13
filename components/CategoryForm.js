@@ -10,7 +10,7 @@ const CategoryForm = ({ category, setCategory, onCategoryCreated }) => {
 
     const handleOnChange = (e) => {
         const key = e.target.id;
-        const value = key === 'showOnMenu' ? e.target.checked : e.target.value;
+        const value = key === 'active' ? e.target.checked : e.target.value;
         setCategory((prev) => ({ ...prev, [key]: value }));
     };
 
@@ -51,6 +51,17 @@ const CategoryForm = ({ category, setCategory, onCategoryCreated }) => {
 
     return (
         <form className="flex flex-col gap-3" onSubmit={handleOnSubmit}>
+            <div className="flex flex-col">
+                <label htmlFor="name">Category ID</label>
+                <input
+                    className="py-2 px-1 rounded"
+                    type="text"
+                    id="id"
+                    disabled
+                    value={category.id}
+                />
+            </div>
+
             <div className="flex flex-col">
                 <label htmlFor="name">Name*</label>
                 <input
@@ -102,11 +113,11 @@ const CategoryForm = ({ category, setCategory, onCategoryCreated }) => {
             </div>
 
             <div className="flex">
-                <label htmlFor="showOnMenu">Show on Menu</label>
+                <label htmlFor="active">Show on Menu</label>
                 <input
                     type="checkbox"
-                    id="showOnMenu"
-                    checked={category.showOnMenu}
+                    id="active"
+                    checked={category.active}
                     onChange={handleOnChange}
                 />
             </div>

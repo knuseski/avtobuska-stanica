@@ -21,7 +21,7 @@ const CategoryTable = ({ categories, setCategory }) => {
     }, [page]);
 
     return (
-        <div>
+        <div className="w-full">
             <table className="w-full">
                 <thead>
                     <tr>
@@ -29,12 +29,24 @@ const CategoryTable = ({ categories, setCategory }) => {
                         <th>Name</th>
                         <th>Description</th>
                         <th>Image</th>
+                        <th>Number of Products</th>
                         <th>Active</th>
                     </tr>
                 </thead>
                 <tbody>
                     {paginatedCategories.map((category) => (
-                        <tr onClick={() => setCategory(category)} key={category.id}>
+                        <tr
+                            className={
+                                'cursor-pointer hover:!bg-gray-300 ' +
+                                (!category.active
+                                    ? '!bg-red-200'
+                                    : category.numberOfProducts === 0
+                                    ? '!bg-yellow-200'
+                                    : '')
+                            }
+                            onClick={() => setCategory(category)}
+                            key={category.id}
+                        >
                             <td>{category.order}</td>
                             <td>{category.name}</td>
                             <td>{category.description}</td>
@@ -49,7 +61,8 @@ const CategoryTable = ({ categories, setCategory }) => {
                                     />
                                 )}
                             </td>
-                            <td>{category.showOnMenu ? 'Yes' : 'No'}</td>
+                            <td>{category.numberOfProducts}</td>
+                            <td>{category.active ? 'Yes' : 'No'}</td>
                         </tr>
                     ))}
                 </tbody>

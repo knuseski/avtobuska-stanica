@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import User from '@/database/models/user';
 
 const handler = NextAuth({
     session: {
@@ -21,12 +20,7 @@ const handler = NextAuth({
             async authorize(credentials, req) {
                 console.log('credentials', credentials);
 
-                const user = await User.findOne({
-                    where: {
-                        first_name: credentials.username,
-                        last_name: credentials.password
-                    }
-                });
+                const user = { username: 'KoBi', password: 'Reko' };
 
                 // You need to provide your own logic here that takes the credentials
                 // submitted and returns either a object representing a user or value

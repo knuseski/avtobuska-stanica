@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchActiveCategories } from '@/service/service';
+import { fetchActiveCategoriesThatHaveProducts } from '@/service/service';
 import { useRouter } from 'next/navigation';
 import { ItemCard } from '@/components';
 
@@ -10,7 +10,7 @@ export default function Home() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetchActiveCategories().then((data) => setCategories(data));
+        fetchActiveCategoriesThatHaveProducts().then((data) => setCategories(data));
     }, []);
 
     const handleSelectCategory = (category) => {

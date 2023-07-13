@@ -1,4 +1,4 @@
-import Category from '@/database/models/category';
+import { Category } from '@/database/models';
 
 export const DELETE = async (req, { params }) => {
     const id = params.id;

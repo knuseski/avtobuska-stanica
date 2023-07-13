@@ -13,7 +13,7 @@ const ProductForm = ({ product, setProduct, onProductCreated }) => {
 
     const handleOnChange = (e) => {
         const key = e.target.id;
-        const value = key === 'showOnMenu' ? e.target.checked : e.target.value;
+        const value = key === 'active' ? e.target.checked : e.target.value;
         setProduct((prev) => ({ ...prev, [key]: value }));
     };
 
@@ -46,6 +46,17 @@ const ProductForm = ({ product, setProduct, onProductCreated }) => {
 
     return (
         <form className="flex flex-col gap-3" onSubmit={handleOnSubmit}>
+            <div className="flex flex-col">
+                <label htmlFor="name">Product ID</label>
+                <input
+                    className="py-2 px-1 rounded"
+                    type="text"
+                    id="id"
+                    disabled
+                    value={product.id}
+                />
+            </div>
+
             <div className="flex flex-col">
                 <label htmlFor="name">Name*</label>
                 <input
@@ -102,11 +113,11 @@ const ProductForm = ({ product, setProduct, onProductCreated }) => {
             </div>
 
             <div className="flex gap-3 justify-center items-end">
-                <label htmlFor="showOnMenu">Show on Menu</label>
+                <label htmlFor="active">Show on Menu</label>
                 <input
                     type="checkbox"
-                    id="showOnMenu"
-                    checked={product.showOnMenu}
+                    id="active"
+                    checked={product.active}
                     onChange={handleOnChange}
                 />
             </div>

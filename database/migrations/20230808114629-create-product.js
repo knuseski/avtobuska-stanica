@@ -1,6 +1,6 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('Product', {
+        await queryInterface.createTable('products', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -19,7 +19,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 references: {
-                    model: 'Category',
+                    model: 'categories',
                     key: 'id'
                 }
             },
@@ -27,7 +27,7 @@ module.exports = {
                 type: Sequelize.NUMERIC,
                 allowNull: false
             },
-            showOnMenu: {
+            active: {
                 type: Sequelize.BOOLEAN,
                 default: true
             },
@@ -44,6 +44,6 @@ module.exports = {
         });
     },
     async down(queryInterface) {
-        await queryInterface.dropTable('Product');
+        await queryInterface.dropTable('products');
     }
 };

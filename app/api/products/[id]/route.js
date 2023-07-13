@@ -1,4 +1,4 @@
-import Product from '@/database/models/product';
+import { Product } from '@/database/models';
 
 export const DELETE = async (req, { params }) => {
     const id = params.id;

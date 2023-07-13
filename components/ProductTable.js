@@ -20,11 +20,10 @@ const ProductTable = ({ products, setProduct }) => {
     }, [page]);
 
     return (
-        <div>
-            <table>
+        <div className="w-full">
+            <table className="w-full">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Price</th>
@@ -33,12 +32,15 @@ const ProductTable = ({ products, setProduct }) => {
                 </thead>
                 <tbody>
                     {paginatedProducts.map((product) => (
-                        <tr onClick={() => setProduct(product)} key={product.id}>
-                            <td>{product.id}</td>
+                        <tr
+                            className="cursor-pointer hover:bg-gray-300"
+                            onClick={() => setProduct(product)}
+                            key={product.id}
+                        >
                             <td>{product.name}</td>
-                            <td>{product.categoryName}</td>
+                            <td>{product.category.name}</td>
                             <td>{product.price} mkd</td>
-                            <td>{product.showOnMenu ? 'Yes' : 'No'}</td>
+                            <td>{product.active ? 'Yes' : 'No'}</td>
                         </tr>
                     ))}
                 </tbody>
